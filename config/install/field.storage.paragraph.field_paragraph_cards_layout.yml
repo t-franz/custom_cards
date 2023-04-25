@@ -1,0 +1,38 @@
+langcode: de
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_paragraph_cards_layout
+field_name: field_paragraph_cards_layout
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'grid grid-1-2'
+      label: '2 Spalten'
+    -
+      value: 'grid grid-1-3'
+      label: '3 Spalten'
+    -
+      value: 'grid grid-1-2-4'
+      label: '4 Spalten'
+    -
+      value: 'grid grid-1-3-6'
+      label: '6 Spalten'
+    -
+      value: flex
+      label: 'Alle in einer Zeile'
+    -
+      value: cards-column
+      label: 'Alle in eine Spalte'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

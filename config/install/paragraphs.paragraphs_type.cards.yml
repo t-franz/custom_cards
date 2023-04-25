@@ -1,0 +1,11 @@
+langcode: de
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: YrtP6y-0R8xI1IkkMSXQAnM2H7mxbM7J7dPBhjco-Ig
+id: cards
+label: Kacheln
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

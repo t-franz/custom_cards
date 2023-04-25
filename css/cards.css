@@ -1,0 +1,23 @@
+.cards-item.padding-top,
+.cards-item.padding-bottom {
+  padding: var(--gap);
+}
+
+.cards-item, .cards-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.cards-content {
+  flex-grow: 1;
+  display: flex;
+}
+
+.cards-link {
+  margin-top: auto;
+}
+
+a.cards-link {
+  display: block;
+  height: 100%;
+}

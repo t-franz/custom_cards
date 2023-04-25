@@ -1,0 +1,99 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Custom cards.
+ *
+ */
+
+/**
+ * Implements hook_theme_registry_alter
+ */
+function paragraph_cards_theme_registry_alter(&$theme_registry) {
+  if (\Drupal::service('theme.manager')->getActiveTheme()->getName() == 'fus') {
+    $theme_registry['paragraph__cards'] = $theme_registry['paragraph'];
+    $theme_registry['paragraph__cards']['template'] = 'paragraph--cards';
+    $theme_registry['paragraph__cards']['path'] = drupal_get_path('module', 'paragraph_cards') . '/templates';
+
+    $theme_registry['paragraph__cards_item'] = $theme_registry['paragraph'];
+    $theme_registry['paragraph__cards_item']['template'] = 'paragraph--cards-item';
+    $theme_registry['paragraph__cards_item']['path'] = drupal_get_path('module', 'paragraph_cards') . '/templates';
+  }
+
+}
+
+/**
+ * Remove Revision-Tab
+ */
+function paragraph_cards_form_alter(&$form, &$form_state, $form_id) {
+  // dpm($form_id);
+  // dpm($form);
+  //dpm($form_state->getBuildInfo()['base_form_id']);
+
+  if ($form_id == 'layout_paragraphs_component_form') {
+    unset($form['field_paragraph_cards_style']['widget']['#options']['_none']);
+  }
+}
+
+
+use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\Core\Template\Attribute;
+
+/**
+* Implements hook_preprocess().
+*/
+function paragraph_cards_preprocess_paragraph(&$variables) {
+  $paragraph = $variables['paragraph'];
+  if ($paragraph->getType() === 'cards') {
+    if ($paragraph->hasField('field_paragraph_cards') && !$paragraph->get('field_paragraph_cards')->isEmpty()) {
+        $variables['#attached']['library'][] = 'paragraph_cards/paragraph_cards';
+    }
+
+    /* Attach layout-classes */
+    $card_layout = $paragraph->get('field_paragraph_cards_layout')->getValue();
+    if (!empty($card_layout)) {
+      // Create a new instance of Attribute.
+      $attributes = new Attribute($variables['attributes']);
+      foreach ($card_layout as $style) {
+        $attributes->addClass($style['value']);
+      }
+      // Set the updated attributes to the paragraph element.
+      $variables['attributes'] = $attributes;
+    }
+
+    /* Attach cards-style-classes to card-items */
+    $card_styles = $paragraph->get('field_paragraph_cards_style')->getValue();
+    $card_classes = [];
+    foreach ($card_styles as $card_style) {
+      $card_classes[] = $card_style['value'];
+    }
+    foreach ($variables['content']['field_paragraph_cards']['#items'] as $key => $value) {
+      $variables['content']['field_paragraph_cards'][$key]['#attributes']['class'] = $card_classes;
+    }
+  }
+
+  if ($paragraph->getType() == 'cards_item') {
+    // Load the parent 'cards' entity.
+    $parent_entity = $paragraph->getParentEntity();
+    if (!empty($parent_entity)) {
+      // Get the value of the 'field_paragraph_card_linkstyle' field.
+      $link_style = $parent_entity->get('field_paragraph_card_linkstyle')->value;
+
+      // Set the link style as class attribute for the 'field_paragraph_cards_link' field.
+      $variables['content']['field_paragraph_cards_link'][0]['#options']['attributes']['class'][] = $link_style;
+    }
+
+    // Get the referenced entity ID from the paragraph field value.
+    $link = $paragraph->get('field_paragraph_cards_link')->getValue();
+    if (isset($link[0])){
+      $entity_uri = $link[0]['uri'];
+      if (preg_match('/^entity:node\/(\d+)$/', $entity_uri, $matches)) {
+        $nid = intval($matches[1]);
+        $node_title = \Drupal\node\Entity\Node::load($nid)->getTitle();
+        $variables['content']['field_paragraph_cards_link'][0]['#options']['attributes']['title'] = $node_title;
+      }
+    }
+  }
+
+}
+

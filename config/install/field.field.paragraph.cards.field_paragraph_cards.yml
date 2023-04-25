@@ -1,0 +1,53 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraph_cards
+    - paragraphs.paragraphs_type.cards
+    - paragraphs.paragraphs_type.cards_item
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: rehuZQ9Hs_M1IMEf8v9wlp2IfNjR34MP9Np1Ob8UWPo
+id: paragraph.cards.field_paragraph_cards
+field_name: field_paragraph_cards
+entity_type: paragraph
+bundle: cards
+label: Kacheln
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      cards_item: cards_item
+    negate: 0
+    target_bundles_drag_drop:
+      cards:
+        weight: 18
+        enabled: false
+      cards_item:
+        weight: 19
+        enabled: true
+      form:
+        weight: 20
+        enabled: false
+      image:
+        weight: 21
+        enabled: false
+      layout:
+        weight: 22
+        enabled: false
+      svg:
+        weight: 23
+        enabled: false
+      text:
+        weight: 25
+        enabled: false
+      video:
+        weight: 34
+        enabled: false
+field_type: entity_reference_revisions

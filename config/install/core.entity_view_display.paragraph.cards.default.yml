@@ -1,0 +1,35 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.cards.field_paragraph_card_linkstyle
+    - field.field.paragraph.cards.field_paragraph_cards
+    - field.field.paragraph.cards.field_paragraph_cards_layout
+    - field.field.paragraph.cards.field_paragraph_cards_style
+    - field.field.paragraph.cards.field_paragraph_css
+    - field.field.paragraph.cards.field_paragraph_styles
+    - paragraphs.paragraphs_type.cards
+  module:
+    - entity_reference_revisions
+_core:
+  default_config_hash: PFuqYY0UNLayRmy6y9fn8PYy6OgwUSXBLVgqQIfKfQo
+id: paragraph.cards.default
+targetEntityType: paragraph
+bundle: cards
+mode: default
+content:
+  field_paragraph_cards:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_paragraph_card_linkstyle: true
+  field_paragraph_cards_layout: true
+  field_paragraph_cards_style: true
+  field_paragraph_css: true
+  field_paragraph_styles: true

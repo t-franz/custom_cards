@@ -1,0 +1,20 @@
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraph_card_linkstyle
+    - paragraphs.paragraphs_type.cards
+  module:
+    - options
+id: paragraph.cards.field_paragraph_card_linkstyle
+field_name: field_paragraph_card_linkstyle
+entity_type: paragraph
+bundle: cards
+label: Button-Stil
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,6 @@
+# A pure JavaScript cards modified form
+# https://codepen.io/sureshrkm/pen/ZbzBpr.
+paragraph_cards:
+  css:
+    component:
+      css/cards.css: {}
