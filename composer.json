@@ -1,0 +1,15 @@
+{
+  "name": "t-franz/paragraph_cards",
+  "description": "Small Drupal-Module to add an paragraph-type cards.",
+  "type": "drupal-module",
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev",
+  "homepage": "https://github.com/t-franz/drupal_cards",
+  "authors": [
+      {
+          "name": "Tobias Franz",
+          "homepage": "https://www.drupal.org/u/tfranz",
+          "role": "Maintainer"
+      }
+  ]
+}
