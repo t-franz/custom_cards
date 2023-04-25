@@ -1,0 +1,44 @@
+langcode: de
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_paragraph_card_linkstyle
+field_name: field_paragraph_card_linkstyle
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'button btn-primary'
+      label: 'Primary Button'
+    -
+      value: 'button btn-secondary'
+      label: 'Secondary Button'
+    -
+      value: 'button btn-primary btn-hollow'
+      label: 'Primary Hollow Button'
+    -
+      value: 'button btn-secondary btn-hollow'
+      label: 'Secondary Hollow Button'
+    -
+      value: 'button btn-grey'
+      label: 'Grey Button'
+    -
+      value: 'button btn-grey btn-hollow'
+      label: 'Grey Hollow Button'
+    -
+      value: 'button btn-darkgrey'
+      label: 'Darkgrey Button'
+    -
+      value: 'button btn-darkgrey btn-hollow'
+      label: 'Darkgrey Hollow Button'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
