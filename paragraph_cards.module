@@ -1,5 +1,6 @@
 <?php
 
+use Drupal\node\Entity\Node;
 /**
  * @file
  * Primary module hooks for Custom cards.
@@ -13,11 +14,11 @@ function paragraph_cards_theme_registry_alter(&$theme_registry) {
   if (\Drupal::service('theme.manager')->getActiveTheme()->getName() == 'fus') {
     $theme_registry['paragraph__cards'] = $theme_registry['paragraph'];
     $theme_registry['paragraph__cards']['template'] = 'paragraph--cards';
-    $theme_registry['paragraph__cards']['path'] = drupal_get_path('module', 'paragraph_cards') . '/templates';
+    $theme_registry['paragraph__cards']['path'] = \Drupal::service('extension.list.module')->getPath('paragraph_cards') . '/templates';
 
     $theme_registry['paragraph__cards_item'] = $theme_registry['paragraph'];
     $theme_registry['paragraph__cards_item']['template'] = 'paragraph--cards-item';
-    $theme_registry['paragraph__cards_item']['path'] = drupal_get_path('module', 'paragraph_cards') . '/templates';
+    $theme_registry['paragraph__cards_item']['path'] = \Drupal::service('extension.list.module')->getPath('paragraph_cards') . '/templates';
   }
 
 }
@@ -89,7 +90,7 @@ function paragraph_cards_preprocess_paragraph(&$variables) {
       $entity_uri = $link[0]['uri'];
       if (preg_match('/^entity:node\/(\d+)$/', $entity_uri, $matches)) {
         $nid = intval($matches[1]);
-        $node_title = \Drupal\node\Entity\Node::load($nid)->getTitle();
+        $node_title = Node::load($nid)->getTitle();
         $variables['content']['field_paragraph_cards_link'][0]['#options']['attributes']['title'] = $node_title;
       }
     }
