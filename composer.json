@@ -4,7 +4,7 @@
   "type": "drupal-module",
   "license": "GPL-2.0+",
   "minimum-stability": "dev",
-  "homepage": "https://github.com/t-franz/drupal_cards",
+  "homepage": "https://github.com/t-franz/drupal_paragraph_cards",
   "authors": [
       {
           "name": "Tobias Franz",

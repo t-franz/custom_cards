@@ -3,21 +3,38 @@
   padding: var(--gap);
 }
 
-.cards-item, .cards-content {
-  display: flex;
+.cards-item.flex {
   flex-direction: column;
+  justify-content: flex-start;
+  gap: 0;
+}
+.cards-item.flex>div {
+  flex-basis: auto;
+  flex-grow: 0;
+}
+.cards-item.flex>.cards-content {
+  flex-grow: 1;
 }
 
-.cards-content {
-  flex-grow: 1;
-  display: flex;
+.cards-link-wrapper.flex {
+  height: 100%;
+  gap: 0;
+}
+.cards-link-wrapper.flex>div {
+  flex-grow: 0;
+  flex-basis: auto;
+  width: 100%;
 }
 
 .cards-link {
   margin-top: auto;
 }
 
-a.cards-link {
+.cards-image:empty {
+  display: none;
+}
+.cards-image img {
+  margin-left: auto;
+  margin-right: auto;
   display: block;
-  height: 100%;
 }

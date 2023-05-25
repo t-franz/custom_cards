@@ -52,8 +52,8 @@
 {% set classes = [
   'cards-item',
   paragraph.field_paragraph_media.isEmpty == false ? 'card-has-image',
-  hasLink ? 'card-has-link',
-  parent_paragraph_styles
+  hasLink and not link_title ? 'card-has-link' : 'flex',
+  hasLink and link_title ? 'card-has-button'
   ] %}
 
 {% if ('bg-' in parent_paragraph_styles) or ('b-' in parent_paragraph_styles) %}
@@ -67,7 +67,7 @@
 <div {{attributes.addClass(classes) }}>
 {% block paragraph %}
   {% if hasLink and not link_title %}
-  <a href="{{ paragraph.field_paragraph_cards_link.0.url.toString }}" class="cards-link">
+  <a href="{{ paragraph.field_paragraph_cards_link.0.url.toString }}" class="cards-link-wrapper{{ hasLink ? ' flex' }}">
   {% endif %}
       {% block content %}
       {% if content.field_paragraph_media|render %}
@@ -80,10 +80,10 @@
           {% if content.field_paragraph_cards_desc|render|trim  %}
           <div class="cards-body">{{ content.field_paragraph_cards_desc }}</div>
           {% endif  %}
-          {% if link_title  %}
-            <div class="cards-link">{{ content.field_paragraph_cards_link }}</div>
-          {% endif  %}
         </div>
+        {% if link_title  %}
+          <div class="cards-link">{{ content.field_paragraph_cards_link }}</div>
+        {% endif  %}
       {% endblock %}
   {% if hasLink and not link_title %}
   </a>
