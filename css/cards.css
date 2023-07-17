@@ -26,8 +26,10 @@
   width: 100%;
 }
 
-.cards-link {
-  margin-top: auto;
+a.cards-link {
+  display: block;
+  height: 100%;
+  text-decoration: none;
 }
 
 .cards-image:empty {
